@@ -1,30 +1,6 @@
-import os
 import requests
 from bs4 import BeautifulSoup
-import subprocess
-import importlib
-
-
-
-def hasRequests():
-    try:
-        importlib.import_module('requests')
-    except ImportError:
-        result = subprocess.run(['pip', 'install', 'requests'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print(result.stdout.decode('utf-8'))
-    else:
-        print('requests模块已安装')
-
-
-def hasBeautifulSoup():
-    try:
-        importlib.import_module('BeautifulSoup')
-    except ImportError:
-        result = subprocess.run(['pip', 'install', 'BeautifulSoup'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print(result.stdout.decode('utf-8'))
-    else:
-        print('requests模块已安装')
-
+import os
 
 # 要爬取的網址
 url = input('請輸入網址:')
