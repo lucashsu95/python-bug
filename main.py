@@ -1,29 +1,25 @@
-import requests
-from bs4 import BeautifulSoup
-import os
+# 有資料夾
 
-# 要爬取的網址
-url = input('請輸入網址:')
-# 建立資料夾
-if not os.path.exists('images'):
-    os.makedirs('images')
-# 發送 HTTP GET 請求並取得回應
-response = requests.get(url)
-# 解析回應的 HTML 內容
-soup = BeautifulSoup(response.content, 'html.parser')
-# 找到所有的圖片
-img_tags = soup.find_all('img')
-# 下載圖片
-for img in img_tags:
-    img_url = img.get('src')
-    # 從 URL 中獲取關鍵詞
-    keyword = img_url.split('/')[-2]
-    folder = os.path.join('images', keyword)
-    # 建立分類資料夾
-    if not os.path.exists(folder):
-        os.makedirs(folder)
-    # 下載圖片並存放到對應的資料夾
-    filename = img_url.split('/')[-1]
-    filepath = os.path.join(folder, filename)
-    with open(filepath, 'wb') as f:
-        f.write(requests.get(img_url).content)
+from bs4 import BeautifulSoup
+import requests
+import os
+import datetime
+
+now = datetime.datetime.now().strftime("%Y%m%d")
+input_image = input('網址:')
+response = requests.get(input_image)
+soup = BeautifulSoup(response.text, "html.parser")
+results = soup.find_all("img")
+print(response)
+image_links = [result.get("src") for result in results]  # 取得圖片來源連結
+
+if not os.path.exists("images"):
+    os.mkdir("images")  # 建立資料夾
+
+for index, link in enumerate(image_links):
+    try:
+        img = requests.get(link)  # 下載圖片
+        with open("images\\" + now + str(index+1) + ".jpg", "wb") as file:  # 開啟資料夾及命名圖片檔
+            file.write(img.content)  # 寫入圖片的二進位碼
+    except:
+        print('err')
