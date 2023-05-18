@@ -1,25 +1,18 @@
-# 有資料夾
+import subprocess
 
-from bs4 import BeautifulSoup
-import requests
-import os
-import datetime
+def fs_getImage(pyFileName):
+    subprocess.run(
+        ['python', pyFileName])
 
-now = datetime.datetime.now().strftime("%Y%m%d")
-input_image = input('網址:')
-response = requests.get(input_image)
-soup = BeautifulSoup(response.text, "html.parser")
-results = soup.find_all("img")
-print(response)
-image_links = [result.get("src") for result in results]  # 取得圖片來源連結
 
-if not os.path.exists("images"):
-    os.mkdir("images")  # 建立資料夾
+print('1. 要使用多個資料夾做分類嗎? 請直接(Enter)')
+print('2. 要使用一個資料夾做分類嗎? 請按(y)')
 
-for index, link in enumerate(image_links):
-    try:
-        img = requests.get(link)  # 下載圖片
-        with open("images\\" + now + str(index+1) + ".jpg", "wb") as file:  # 開啟資料夾及命名圖片檔
-            file.write(img.content)  # 寫入圖片的二進位碼
-    except:
-        print('err')
+flag = input()
+if(flag == 'y' or flag == 'Y'):
+    fs_getImage('getImage-no-has-dir.py')
+else:
+    fs_getImage('getImage.py')
+
+
+#https://yuc.wiki/202304/ 爬蟲範例網站
