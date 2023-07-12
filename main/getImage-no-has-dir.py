@@ -7,7 +7,7 @@ import os
 folder_path = 'images'
 
 def openImages():
-    print('3.爬圖片需要一點時間，等等吧')
+    print('2.爬圖片需要一點時間，等等吧')
 
     if os.name == 'nt':
         os.startfile(folder_path)
