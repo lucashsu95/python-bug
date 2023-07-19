@@ -19,12 +19,10 @@ def openImages():
 now = datetime.datetime.now().strftime("%Y%m%d")
 
 input_image = input('請輸入網址:')
-cookie = input('cookie:')
-limit = int(input('需要幾張呢? :'))
-
+limit = input('需要幾張呢? :')
 headers = {
             'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
-            'Cookie':cookie
+            'Cookie':'_ga_0LGGE1WS5N=GS1.1.1684326754.1.1.1684327050.0.0.0; _ga=GA1.2.2142868665.1684326753; _gid=GA1.2.318202312.1689730516'
         }
 response = requests.get(input_image,headers=headers)
 
@@ -37,7 +35,8 @@ image_links = [result.get("src") for result in results]  # 取得圖片來源連
 if not os.path.exists(folder_path):
     os.mkdir(folder_path)  # 建立資料夾
 openImages()
-
+limit = int(len(image_links) if limit == '' else limit)
+print(limit)
 for i in range(limit):
     try:
         img = requests.get(image_links[i])  # 下載圖片
