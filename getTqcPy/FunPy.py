@@ -96,6 +96,3 @@ def getDetail(url):
         wpBlock = soup.select("div.post-content > .wp-block-code")
         write_code_blocks(f, wpHead, wpBlock, folder_path)
     print(f"已完成 {h1_tags}")
-getDetail('https://jbprogramnotes.com/2020/05/tqc-%e7%a8%8b%e5%bc%8f%e8%aa%9e%e8%a8%80python-108-%e5%ba%a7%e6%a8%99%e8%b7%9d%e9%9b%a2%e8%a8%88%e7%ae%97/')
-getDetail('https://jbprogramnotes.com/2020/05/tqc-%e7%a8%8b%e5%bc%8f%e8%aa%9e%e8%a8%80python-109-%e6%ad%a3%e4%ba%94%e9%82%8a%e5%bd%a2%e9%9d%a2%e7%a9%8d%e8%a8%88%e7%ae%97/')
-getDetail('https://jbprogramnotes.com/2020/05/tqc-%e7%a8%8b%e5%bc%8f%e8%aa%9e%e8%a8%80python-110-%e6%ad%a3n%e9%82%8a%e5%bd%a2%e9%9d%a2%e7%a9%8d%e8%a8%88%e7%ae%97/')
