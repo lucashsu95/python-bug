@@ -19,10 +19,11 @@ find_element(By.CSS_SELECTOR, "css selector")
 
 ## 執行
 
-### 安裝selenium
+### 安裝python庫
 ```bash
-pip install selenium
+pip install -r requirements.txt
 ```
+
 ### 設定資訊
 ```bash
 cp .env.example .env
